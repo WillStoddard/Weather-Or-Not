@@ -3,9 +3,9 @@
 <body>
 
 <form action="request.php" method="post">
-Precipitation Threashold: <input type="text" name="pt"><br>
-Zip Code: <input type="text" name="zip"><br>
-Prediction Date: <input type="text" name="zip"><br>
+Precipitation Threshold (in inches above average): <input type="text" name="pt"><br>
+Zip Code or Weather Station Code: <input type="text" name="zip"><br>
+Prediction Date (mm/dd/yyyy): <input type="text" name="zip"><br>
 <!-- 
 Dropdown menu soon to come. 
 Should look like the following: 
