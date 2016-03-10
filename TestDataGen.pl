@@ -2,8 +2,11 @@
 use LWP::Simple;
 use strict;
 use FileHandle;
+use Date::Calc qw(:all);
 
-my @storm;my @avgWeath;my @city;my @year;my @month;my @day;my @eDay;my @eMonth;my @eYear;my $c;
+
+$daySince1990 = Date_to_Days(1990,1,1);
+my @storm;my @avgWeath;my @city;my @year;my @month;my @day;my @eDay;my @eMonth;my @eYear; my $c;
 $storm[0]="Blizzard of 1999";
 $city[0]="KISW";
 $year[0]="1998";
@@ -58,10 +61,12 @@ $eDay[5]="22";
 $eMonth[5]="2";
 $eYear[5]="2015";
 
+my @precip;
+
 $c=0;
 foreach(@storm){
     my @weather;
-    my $webpage=LWP::Simple::getstore("http://www.wunderground.com/history/airport/$city[$c]/$year[$c]/$month[$c]/$day[$c]/CustomHistory.html?dayend=$eDay[$c]&monthend=$eMonth[$c]&yearend=$eYear[$c]&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&MR=1&format=1","weather.csv");
+    my $webpage=LWP::Simple::getstore("http://www.wunderground.com/history/zipcode/$city[$c]/$year[$c]/$month[$c]/$day[$c]/CustomHistory.html?dayend=$eDay[$c]&monthend=$eMonth[$c]&yearend=$eYear[$c]&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&MR=1&format=1","weather.csv");
     my $filename="weather.csv";
     my $fh= new FileHandle "$filename";
     while(<$fh>){
