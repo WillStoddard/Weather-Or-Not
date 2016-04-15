@@ -1,25 +1,84 @@
-<!DOCTYPE HTML>
-<html> 
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align:center;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+.entryFields{
+    font-family:arial;
+}
+.entryBox{
+    
+}
+</style>
+
+</head>
 <body>
-
 <form action="request.php" method="post">
-Precipitation Threshold (in inches above average): <input type="text" name="pt"><br>
-Zip Code or Weather Station Code: <input type="text" name="zip"><br>
-Prediction Date (mm/dd/yyyy): <input type="text" name="zip"><br>
-<!-- 
-Dropdown menu soon to come. 
-Should look like the following: 
-
-+---------------------+
-+within how many days?+
-+---------------------+
-+		  1			  +
-+		  2			  +
-+		  3			  +
-+		  4			  +
-+		  5			  +
-+---------------------+
--->
+<div class="entryFields">
+    <div class="boxHeading">
+        Precipitation Threshold (in inches above average):
+        <div class="entryBox">
+            <input type="text" name="pt">
+        </div>
+    </div>
+<br>
+    <div class="entryBox">
+        Zip Code or Weather Station Code: 
+        <div class="entryBox">
+            <input type="text" name="zip"><br>
+        </div>
+    </div>
+</div>
+<br>
+<div class="dropdown">
+  <button class="dropbtn">Within How Many Days?</button>
+  <div class="dropdown-content">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+  </div>
+</div>
+<br>
+<br>
 <input type="submit">
 </form>
 
