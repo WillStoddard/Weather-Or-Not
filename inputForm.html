@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    background-color: #9999FF;
+        font-family: arial;
+        color:#2C2C2C;
+}
+</style>
+<h1>
+  Weather-Or-Not!
+</h1>
+</head>
+<body>
+<form action="request.php" method="post">
+<div class="entryFields">
+    <div class="boxHeading">
+        Precipitation Threshold (in inches above average):
+        <div class="entryBox">
+            <input type="text" name="pt">
+        </div>
+    </div>
+<br>
+    <div class="boxHeading">
+        Zip Code or Weather Station Code: 
+        <div class="entryBox">
+            <input type="text" name="zip"><br>
+        </div>
+    </div>
+</div>
+<br>
+Predict how many days ahead?
+<select name="predictWindow">
+  <div class="predictValues">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </div>
+</select>
+<br>
+<br>
+<input type="submit">
+</form>
+
+</body>
+</html>
