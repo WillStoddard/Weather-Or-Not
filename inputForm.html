@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?
 <html>
 <head>
 <style>
@@ -13,35 +14,43 @@ body{
 </h1>
 </head>
 <body>
-<form action="request.php" method="post">
+<form action="action_page.php" method="post">
 <div class="entryFields">
+    <div class="boxHeading">
+        Enter you email below:
+        <div>
+            <input type="text" name="email" required>
+        </div>
+    </div>
+<br>
     <div class="boxHeading">
         Precipitation Threshold (in inches above average):
         <div class="entryBox">
-            <input type="text" name="pt">
+            <input type="text" name="pt" required>
         </div>
     </div>
 <br>
     <div class="boxHeading">
         Zip Code or Weather Station Code: 
         <div class="entryBox">
-            <input type="text" name="zip"><br>
+            <input type="text" name="code"><br>
         </div>
     </div>
 </div>
 <br>
-Predict how many days ahead?
-<select name="predictWindow">
-  <div class="predictValues">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </div>
-</select>
-<br>
-<br>
-<input type="submit">
+<div id="dropDown">
+    Predict how many days ahead?
+    <select name="daysAhead">
+      <div class="predictValues">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </div>
+    </select>
+    <br><br>
+</div>
+    <input type="submit" value="Submit" name="submit"/>
 </form>
 
 </body>
