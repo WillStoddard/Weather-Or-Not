@@ -15,23 +15,42 @@ body{
 </head>
 <body>
 <form action="action_page.php" method="post">
+<div class="description">
+	The Weather-Or-Not program uses a Support Vector Machine to predict "Weather-Or-Not" there will be 
+	<br>
+	a storm in your area. The SVM is trained on historical weather data from your location, then looks
+	<br>
+	at the recent weather near you, classifying it based on past weather patterns.
+	<br>
+	<br>
+	If the most recent ten days near you look like the ten days that lead up to a storms in the past,
+	<br>
+	it's likely that you've got a storm coming!
+</div>
+<br>
 <div class="entryFields">
     <div class="boxHeading">
-        Enter you email below:
+        <b>Enter your email below:</b>
         <div>
             <input type="text" name="email" required>
         </div>
-    </div>
-<br>
-    <div class="boxHeading">
-        Precipitation Threshold (in inches above average):
-        <div class="entryBox">
-            <input type="text" name="pt" required>
+        <div>
+        This way we can send you your Weather-Or-Not prediction!
         </div>
     </div>
 <br>
     <div class="boxHeading">
-        Zip Code or Weather Station Code: 
+        <b>Precipitation Threshold (in inches above the monthly average):</b>
+        <div class="entryBox">
+            <input type="text" name="pt" required>
+        </div>
+        The Precipitation Threshold indicates to the SVM how
+        <br>
+        much precipitation should be considered a storm
+    </div>
+<br>
+    <div class="boxHeading">
+        <b>Zip Code or Weather Station Code: </b>
         <div class="entryBox">
             <input type="text" name="code"><br>
         </div>
@@ -39,7 +58,7 @@ body{
 </div>
 <br>
 <div id="dropDown">
-    Predict how many days ahead?
+    <b>Predict how many days ahead?</b>
     <select name="daysAhead">
       <div class="predictValues">
         <option value="1">1</option>
