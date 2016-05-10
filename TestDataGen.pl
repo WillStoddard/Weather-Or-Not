@@ -4,9 +4,8 @@ use strict;
 use FileHandle;
 use Date::Calc qw(:all);
 
-my ($zipcode, $threshold) = @ARGV;
+
 $daySince1990 = Date_to_Days(1990,1,1);
-($cyear, $cmonth, $cday) = Today();
 my @storm;my @avgWeath;my @city;my @year;my @month;my @day;my @eDay;my @eMonth;my @eYear; my $c;
 $storm[0]="Blizzard of 1999";
 $city[0]="KISW";
@@ -62,48 +61,50 @@ $eDay[5]="22";
 $eMonth[5]="2";
 $eYear[5]="2015";
 
+my @precip;
 
-$tyear = 1990;
-$tmonth = 1;
-$tday = 1;
-while((Date_to_Days($tyear, $tmonth, 1) < Date_to_Days($cyear, $cmonth, 1)){
-    my @precip;
-    my $avgMonth = 0;
-    my $webpage=LWP::Simple::getstore("http://www.wunderground.com/history/zipcode/$zipcode/$tyear/$tmonth/1/MonthlyHistory.html?format=1","average.csv");
-    my $filename1 = "average.csv";
-    my $fh1 = new FileHandle "$filename1";
-    while(<$fh1>){
-        my @array = split/,/;
-        if($array[19] 1="PrecipitationIn"){
-            push(@precip, $array[19];
-        }
-    close $fh1;
-    $total = 0;
-    foreach(@precip){
-        $total = $total + $_;
-    }
-    $avgMonth = ($total/scalar(@precip));
+$c=0;
+foreach(@storm){
     my @weather;
-    my $webpage=LWP::Simple::getstore("http://www.wunderground.com/history/zipcode/$zipcode/$tyear/$tmonth/1/MonthlyHistory.html?format=1","weather.csv");
+    my $webpage=LWP::Simple::getstore("http://www.wunderground.com/history/zipcode/$city[$c]/$year[$c]/$month[$c]/$day[$c]/CustomHistory.html?dayend=$eDay[$c]&monthend=$eMonth[$c]&yearend=$eYear[$c]&req_city=&req_state=&req_statename=&reqdb.zip=&reqdb.magic=&reqdb.wmo=&MR=1&format=1","weather.csv");
     my $filename="weather.csv";
     my $fh= new FileHandle "$filename";
     while(<$fh>){
         my @array=split/,/;
         #print "@array\n";
-        if($array[19]!="PrecipitationIn"){
-            if($array[19] > ($avgMonth + $threshold)){
-                if($array[2]!="Mean TemperatureF"){
-                    push(@weather, $array[2]);
-                }  
-                if($array[11]!="Mean Sea Level PressureIn"){
-                    push(@weather, $array[11]);
-                }
-            }
+        if($array[1]!="Max TemperatureF"){
+            push(@weather, $array[1]);
         }
+        if($array[2]!="Mean TemperatureF"){
+            push(@weather, $array[2]);
+        }
+        if($array[3]!="Min TemperatureF"){
+            push(@weather, $array[3]);
+        }
+        if($array[10]!="Max Sea Level PressureIn"){
+            push(@weather, $array[10]);
+        }
+        if($array[11]!="Mean Sea Level PressureIn"){
+            push(@weather, $array[11]);
+        }
+        if($array[12]!="Min Sea Level PressureIn"){
+            push(@weather, $array[12]);
+        }
+        if($array[16]!="Max Wind SpeedMPH"){
+            push(@weather, $array[16]);
+        }
+        if($array[17]!="Mean Wind SpeedMPH"){
+            push(@weather, $array[17]);
+        }
+    }
+    if($_ eq "Blizzard of 1999"){
+        print "1";
+    }else{
+        print "\n1 ";
     }
     foreach(@weather){
         print "$_  ";
     }
     close $fh;
-    ($tyear, $tmonth, $tday) = Add_Delta_YM($tyear, $tmonth, $tday, 0, 1);
+    $c++;
 }
